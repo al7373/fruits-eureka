@@ -75,7 +75,7 @@ class FetchFruitsCommand extends Command
         // Send an email notification
         $email = (new Email())
             ->from('noreply@example.com')
-            ->to('admin@example.com')
+            ->to('ramrijalain@gmail.com')
             ->subject('Fruits data has been fetched and saved')
             ->text('Fruits data from FruityVice API has been successfully fetched and saved to the local database.');
 

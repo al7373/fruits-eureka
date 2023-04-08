@@ -1,8 +1,14 @@
 <!-- assets/vue/components/App.vue -->
 <template>
-  <div>
-    <fruit-list @favorite-changed="updateFavoriteFruits"></fruit-list>
-    <favorite-fruits ref="favoriteFruits"></favorite-fruits>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col">
+        <fruit-list @favorite-changed="updateFavoriteFruits"></fruit-list>
+      </div>
+      <div class="col">
+        <favorite-fruits ref="favoriteFruits"></favorite-fruits>
+      </div>
+    </div>
   </div>
 </template>
 
