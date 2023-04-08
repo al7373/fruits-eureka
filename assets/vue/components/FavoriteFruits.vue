@@ -1,7 +1,7 @@
 <!-- assets/vue/components/FavoriteFruits.vue -->
 <template>
   <div class="container">
-    <h1 class="my-4">Fruits favoris</h1>
+    <h1 class="my-4">Favorite Fruits</h1>
     <ul class="list-group mb-4">
       <li
         class="list-group-item d-flex justify-content-between align-items-center"

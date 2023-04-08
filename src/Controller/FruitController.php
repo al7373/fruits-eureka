@@ -27,6 +27,7 @@ class FruitController extends AbstractController
         return $this->json($fruits, 200, [], ['groups' => 'fruit:list']);
     }
 
+
     /**
      * @Route("/api/fruits/{fruit_id}/favorite", name="toggle_favorite", methods={"POST"})
      * @ParamConverter("fruit", class="App\Entity\Fruit")
@@ -34,6 +35,16 @@ class FruitController extends AbstractController
     public function toggleFavorite(Fruit $fruit): JsonResponse
     {
         $entityManager = $this->getDoctrine()->getManager();
+
+        if (!$fruit->getIsFavorite()) {
+            $favoriteFruitsCount = $entityManager->getRepository(Fruit::class)->count(['isFavorite' => true]);
+            if ($favoriteFruitsCount >= 10) {
+                return $this->json([
+                    'message' => 'Maximum favorite fruits limit reached (10)',
+                ], JsonResponse::HTTP_BAD_REQUEST);
+            }
+        }
+
         $fruit->setIsFavorite(!$fruit->getIsFavorite());
         $entityManager->flush();
 
@@ -42,7 +53,6 @@ class FruitController extends AbstractController
             'isFavorite' => $fruit->getIsFavorite()
         ]);
     }
-
 
     /**
      * @Route("/api/fruits/favorites", name="get_favorites", methods={"GET"})
