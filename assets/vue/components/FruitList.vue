@@ -16,7 +16,7 @@
     <ul>
       <li v-for="fruit in fruits" :key="fruit.id">
         {{ fruit.name }} - {{ fruit.family }}
-        <button @click="toggleFavorite(fruit)">Add to favorites</button>
+        <button @click="toggleFavorite(fruit)">Add to favorite</button>
       </li>
     </ul>
 

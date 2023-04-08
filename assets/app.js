@@ -13,9 +13,11 @@ import './bootstrap';
 
 import { createApp } from 'vue';
 import FruitList from './vue/components/FruitList';
+import FavoriteFruits from './vue/components/FavoriteFruits';
 
 const app = createApp({});
 
 app.component('FruitList', FruitList);
+app.component('FavoriteFruits', FavoriteFruits);
 
 app.mount('#app');
