@@ -1,31 +1,59 @@
 <!-- assets/vue/components/FruitList.vue -->
 <template>
-  <div>
-    <h1>Fruits List</h1>
+  <div class="container">
+    <h1 class="my-4">Fruits List</h1>
 
-    <div>
-      <label for="name">Fruit name:</label>
-      <input type="text" id="name" v-model="filters.name" @input="fetchFruits">
-    </div>
+    <form>
+      <div class="form-group">
+        <label for="name">Fruit name:</label>
+        <input
+          type="text"
+          id="name"
+          v-model="filters.name"
+          @input="fetchFruits"
+          class="form-control"
+        />
+      </div>
 
-    <div>
-      <label for="family">Family:</label>
-      <input type="text" id="family" v-model="filters.family" @input="fetchFruits">
-    </div>
+      <div class="form-group">
+        <label for="family">Family:</label>
+        <input
+          type="text"
+          id="family"
+          v-model="filters.family"
+          @input="fetchFruits"
+          class="form-control"
+        />
+      </div>
+    </form>
 
-    <ul>
-      <li v-for="fruit in fruits" :key="fruit.id">
+    <ul class="list-group mb-4">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+        v-for="fruit in fruits"
+        :key="fruit.id"
+      >
         {{ fruit.name }} - {{ fruit.family }}
-        <button @click="toggleFavorite(fruit)">
-          {{ fruit.isFavorite ? 'remove from favorite' : 'add to favorite' }}
+        <button
+          class="btn btn-sm"
+          :class="{ 'btn-primary': !fruit.isFavorite, 'btn-danger': fruit.isFavorite }"
+          @click="toggleFavorite(fruit)"
+        >
+          {{ fruit.isFavorite ? 'Remove from favorite' : 'Add to favorite' }}
         </button>
       </li>
     </ul>
 
-    <div>
-      <button @click="changePage(-1)" :disabled="currentPage === 1">Previous</button>
-      Page {{ currentPage }}
-      <button @click="changePage(1)">Next</button>
+    <div class="d-flex justify-content-center">
+      <button
+        class="btn btn-primary mx-2"
+        @click="changePage(-1)"
+        :disabled="currentPage === 1"
+      >
+        Previous
+      </button>
+      <span>Page {{ currentPage }}</span>
+      <button class="btn btn-primary mx-2" @click="changePage(1)">Next</button>
     </div>
   </div>
 </template>
@@ -42,14 +70,6 @@ export default {
         family: '',
       },
       currentPage: 1,
-      favoriteFruits: [],
-      totalNutritionFacts: {
-        carbohydrates: 0,
-        protein: 0,
-        fat: 0,
-        calories: 0,
-        sugar: 0,
-      },
     };
   },
   methods: {
