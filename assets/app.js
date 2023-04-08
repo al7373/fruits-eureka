@@ -12,12 +12,8 @@ import './styles/app.css';
 import './bootstrap';
 
 import { createApp } from 'vue';
-import FruitList from './vue/components/FruitList';
-import FavoriteFruits from './vue/components/FavoriteFruits';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const app = createApp({});
+import App from './vue/components/App';
 
-app.component('FruitList', FruitList);
-app.component('FavoriteFruits', FavoriteFruits);
-
-app.mount('#app');
+createApp(App).mount('#app');

@@ -16,7 +16,9 @@
     <ul>
       <li v-for="fruit in fruits" :key="fruit.id">
         {{ fruit.name }} - {{ fruit.family }}
-        <button @click="toggleFavorite(fruit)">Add to favorite</button>
+        <button @click="toggleFavorite(fruit)">
+          {{ fruit.isFavorite ? 'remove from favorite' : 'add to favorite' }}
+        </button>
       </li>
     </ul>
 
@@ -40,6 +42,14 @@ export default {
         family: '',
       },
       currentPage: 1,
+      favoriteFruits: [],
+      totalNutritionFacts: {
+        carbohydrates: 0,
+        protein: 0,
+        fat: 0,
+        calories: 0,
+        sugar: 0,
+      },
     };
   },
   methods: {
@@ -60,6 +70,7 @@ export default {
     async toggleFavorite(fruit) {
       await axios.post(`http://localhost:3000/api/fruits/${fruit.fruit_id}/favorite`);
       fruit.isFavorite = !fruit.isFavorite;
+      this.$emit('favorite-changed', fruit);
     },
   },
   mounted() {
