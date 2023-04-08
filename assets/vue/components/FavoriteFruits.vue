@@ -1,19 +1,42 @@
 <!-- assets/vue/components/FavoriteFruits.vue -->
 <template>
-  <div>
-    <h1>Fruits favoris</h1>
-    <ul>
-      <li v-for="fruit in favoriteFruits" :key="fruit.fruit_id">
-        {{ fruit.name }} - {{ fruit.family }}
+  <div class="container">
+    <h1 class="my-4">Fruits favoris</h1>
+    <ul class="list-group mb-4">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+        v-for="fruit in favoriteFruits"
+        :key="fruit.fruit_id"
+      >
+        <span>{{ fruit.name }} - {{ fruit.family }}</span>
       </li>
     </ul>
     <div>
       <h2>Sum of nutritions facts</h2>
-      <p>Carbohydrates: {{ totalNutritionFacts.carbohydrates }} g</p>
-      <p>Protein: {{ totalNutritionFacts.protein }} g</p>
-      <p>Fat: {{ totalNutritionFacts.fat }} g</p>
-      <p>Calories: {{ totalNutritionFacts.calories }} kcal</p>
-      <p>Sugar: {{ totalNutritionFacts.sugar }} g</p>
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th scope="row">Carbohydrates</th>
+            <td>{{ totalNutritionFacts.carbohydrates }} g</td>
+          </tr>
+          <tr>
+            <th scope="row">Protein</th>
+            <td>{{ totalNutritionFacts.protein }} g</td>
+          </tr>
+          <tr>
+            <th scope="row">Fat</th>
+            <td>{{ totalNutritionFacts.fat }} g</td>
+          </tr>
+          <tr>
+            <th scope="row">Calories</th>
+            <td>{{ totalNutritionFacts.calories }} kcal</td>
+          </tr>
+          <tr>
+            <th scope="row">Sugar</th>
+            <td>{{ totalNutritionFacts.sugar }} g</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </template>
